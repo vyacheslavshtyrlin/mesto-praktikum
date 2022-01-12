@@ -7,25 +7,24 @@ let formElement = document.querySelector('.form');
 
 
 function closePopup() {
-   overlay.classList.remove(popupopend);
+  overlay.classList.remove(popupopend);
 }
 
 
 function openPopup() {
-   overlay.classList.add(popupopend);
+  overlay.classList.add(popupopend);
 }
 
 
 function formSubmitHandler (evt) {
-   evt.preventDefault();
-   let nameInput = document.querySelector('.form__name');
-   let jobInput = document.querySelector('.form__job');
-   let namePage = document.querySelector('.profile__name');
-   let jobPage = document.querySelector('.profile__caption'); 
-
-   namePage.textContent = nameInput.value;
-   jobPage.textContent = jobInput.value;
-   closePopup(overlay);
+  evt.preventDefault();
+  let nameInput = document.querySelector('.form__name');
+  let jobInput = document.querySelector('.form__job');
+  let namePage = document.querySelector('.profile__name');
+  let jobPage = document.querySelector('.profile__caption');
+  namePage.textContent = nameInput.value;
+  jobPage.textContent = jobInput.value;
+  closePopup(overlay);
 }
 
 
