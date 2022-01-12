@@ -1,0 +1,24 @@
+.form__save-button {
+   background-image: url(../../../images/Submit\ Button.svg);
+   width: 100%;
+   height: 50px;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   margin-top: 48px;
+   padding: 0;
+   border-style: none;
+   cursor: pointer;
+}
+
+@media screen and (max-width: 586px) {
+   .form__save-button {
+      width: 100%;
+      height: 46px;
+      margin-top: 45px;
+   }   
+}
+
+.form__save-button:hover {
+   opacity: 0.5;
+}

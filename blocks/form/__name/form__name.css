@@ -1,0 +1,12 @@
+.form__name {
+   width: 100%;
+   border: none;
+   border-bottom: 1px solid rgba(0,0,0,.2);
+   padding: 0;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 400;
+   height: 27px;
+   line-height: 17px;
+   outline: none;
+}
