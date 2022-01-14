@@ -7,7 +7,8 @@
   cursor: pointer;
   padding: 0;
   background-color: #000000;
-  background-image: url(../../../images/Vector.png);
+  background-image: url(../../../images/Cross.svg);
+  background-size: 22px 22px;
   background-position: center;
   background-repeat: no-repeat;
   align-self: center;
@@ -17,11 +18,12 @@
 
 @media screen and (max-width: 586px) {
   .profile__add-button {
-      width: 100%;
-      margin-left: 0;
+    width: 100%;
+    margin-left: 0;
+    background-size: 16px 16px;
   }
 }
 
 .profile__add-button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }

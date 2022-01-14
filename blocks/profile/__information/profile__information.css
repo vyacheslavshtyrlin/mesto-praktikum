@@ -9,14 +9,14 @@
 
 @media screen and (max-width: 586px) {
   .profile__information {
-      justify-content: center;
+    justify-content: center;
   }
 }
 
 
 @media screen and (max-width: 786px) {
   .profile__information {
-      margin-bottom: 14px;
+    margin-bottom: 14px;
 
   }
 }

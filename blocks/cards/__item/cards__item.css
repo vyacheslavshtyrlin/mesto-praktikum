@@ -1,4 +1,4 @@
-.photo-grid__item {
+.cards__item {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(282px,1fr));
   list-style: none;
