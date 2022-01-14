@@ -1,30 +1,31 @@
 let buttonEdit = document.querySelector('.profile__edit-button');
 let buttonClose = document.querySelector('.popup__close-button');
-let overlay = document.querySelector('.popup');
-let popupopend = 'popup_opened';
+let popup = document.querySelector('.popup');
 let formElement = document.querySelector('.form');
+let nameInput = document.querySelector('.form__name');
+let jobInput = document.querySelector('.form__job');
+let namePage = document.querySelector('.profile__name');
+let jobPage = document.querySelector('.profile__caption');
 
 
 
 function closePopup() {
-  overlay.classList.remove(popupopend);
+  popup.classList.remove('popup_opened');
 }
 
 
 function openPopup() {
-  overlay.classList.add(popupopend);
+  popup.classList.add('popup_opened');
+  nameInput.value = namePage.textContent;
+  jobInput.value = jobPage.textContent;
 }
 
 
 function formSubmitHandler (evt) {
   evt.preventDefault();
-  let nameInput = document.querySelector('.form__name');
-  let jobInput = document.querySelector('.form__job');
-  let namePage = document.querySelector('.profile__name');
-  let jobPage = document.querySelector('.profile__caption');
   namePage.textContent = nameInput.value;
   jobPage.textContent = jobInput.value;
-  closePopup(overlay);
+  closePopup();
 }
 
 
