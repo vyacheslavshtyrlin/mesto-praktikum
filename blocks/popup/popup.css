@@ -5,9 +5,18 @@
   right: 0;
   left: 0;
   background: rgba(0, 0, 0, .5);
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
   justify-content: center;
   align-items: center;
+  display: flex;
+
+
+
+
+
+
 }
 
 @media screen and (max-width: 586px) {

@@ -24,69 +24,57 @@
     </section>
     <section class="cards">
       <ul class="cards__item">
-        <li class="card">
-          <img class="card__image" src="./images/iltun-huseynli-x-HtPt1QcqQ-unsplash.jpg" alt="ваше загруженное фото">
-          <div class="card__description">
-            <h2 class="card__caption">Баку, Азербайджан</h2>
-            <button aria-label="like" type="button" class="card__like-button"></button>
-          </div>
-        </li>
-          <li class="card">
-            <img class="card__image" src="./images/gary-ruiz-wGVSGWFi6CA-unsplash.jpg" alt="ваше загруженное фото">
-            <div class="card__description">
-              <h2 class="card__caption">Париж, Франция</h2>
-              <button aria-label="like" type="button" class="card__like-button "></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/dimitry-anikin-sjL3LOrCr4w-unsplash.jpg" alt="ваше загруженное фото">
-            <div class="card__description">
-              <h2 class="card__caption">Вена, Австрия</h2>
-              <button aria-label="like" type="button" class="card__like-button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/moises-gonzalez-4xFUoiW3i4k-unsplash.jpg" alt="ваше загруженное фото">
-            <div class="card__description">
-              <h2 class="card__caption">Берлин, Германия</h2>
-              <button aria-label="like" type="button" class="card__like-button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/charlie-gallant-I0TFurj83AY-unsplash.jpg" alt="ваше загруженное фото">
-            <div class="card__description">
-              <h2 class="card__caption">Прага, Чехия</h2>
-              <button aria-label="like" type="button" class="card__like-button"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img class="card__image" src="./images/elijah-g-_BBlUZhRzjg-unsplash.jpg" alt="ваше загруженное фото">
-            <div class="card__description">
-              <h2 class="card__caption">Брюгге, Бельгия</h2>
-              <button aria-label="like" type="button" class="card__like-button"></button>
-            </div>
-          </li>
-        </ul>
+      </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__caption">© 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+
+  <div class="popup popup_profile-edit">
     <div class="popup__container">
-      <button aria-label="close" type="button" class="popup__close-button"></button>
+      <button type="button" class="popup__close-button popup__close-button_profile-edit"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form form" name="edit-profile">
-        <label class="form__item">
-          <input type="text" class="form__field form__field_name_input" name="strName" placeholder="Жак-Ив Кусто">
-        </label>
-        <label class="form__item">
-          <input type="text" class="form__field form__field_job_input" name="strDescription" placeholder="Исследователь океана">
-        </label>
-        <button aria-label="submit" type="submit" class="form__save-button">Сохранить</button>
+        <input class="form__field form__field_input_name" type="text" placeholder="Имя">
+        <input class="form__field form__field_input_job" type="text" placeholder="Профессия">
+        <button type="submit" class="form__save-button">Сохранить</button>
       </form>
     </div>
   </div>
+
+<div class="popup popup_card-add">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button popup__close-button_card-add"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form form" name="add-image">
+        <input class="form__field form__field_input_place" type="text" placeholder="Название">
+        <input class="form__field form__field_input_link" type="url" placeholder="Ссылка на картинку">
+        <button type="submit" class="form__save-button">Создать</button>
+      </form>
+    </div>
+  </div>
+
+<div class="popup popup_large-image">
+  <div class="popup__container_large-image">
+    <img src="#" class="popup__image" alt="#">
+    <figcaption class="popup__caption"></figcaption>
+    <button type="button" aria-label="close" class="popup__close-button_large-image"></button>
+  </div>
+</div>
+
+  <template id='card-template'>
+    <li class="card">
+      <img src="#" class="card__image">
+      <button aria-label="delete" type="button" class="card__remove-button"></button>
+      <div class="card__description">
+        <h2 class="card__caption"></h2>
+        <button aria-label="like" type="button" class="card__like-button"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./scripts/index.js"></script>
+
 </body>
 </html>
