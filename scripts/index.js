@@ -83,7 +83,7 @@ popupAll.forEach(item => {
       item.classList.remove('popup_opened')
     }
   })
-  document.addEventListener('click', (evt) => {
+  item.addEventListener('click', (evt) => {
     evt.target.classList.toggle('popup_opened')
   })
 })
