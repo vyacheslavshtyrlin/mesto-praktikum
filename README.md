@@ -2,7 +2,7 @@
 
 **Готовая Работа**
 
-* [Ссылка](https://vyacheslavshtyrlin.github.io/mesto-praktikum)
+* [Ссылка](https://vyacheslavshtyrlin.github.io/mesto/)
 
 ### Обзор
 
