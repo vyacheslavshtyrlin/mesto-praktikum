@@ -15,7 +15,7 @@ const formAdd = document.querySelector('[name="add-image"]')
 const сardInputPlace = document.querySelector('.form__field_input_place');
 const cardInputLink = document.querySelector('.form__field_input_link');
 const cardAddForm = document.querySelector('[name="add-image"]')
-const popupZoom = document.querySelector('.popup_large-image');
+const popupZoom = document.querySelector('.popup_large');
 const popupZoomImage = popupZoom.querySelector('.popup__image');
 const popupZoomCaption = popupZoom.querySelector('.popup__caption');
 const popupZoomClose = popupZoom.querySelector('.popup__close-button_large');
