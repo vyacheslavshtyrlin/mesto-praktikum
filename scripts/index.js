@@ -1,7 +1,7 @@
-const popupEdit = document.querySelector('.popup_profile-edit');
+const popupEdit = document.querySelector('.popup_type_profile-edit');
 const openButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button_profile-edit');
-const popupAdd = document.querySelector('.popup_card-add');
+const popupAdd = document.querySelector('.popup_type_card-add');
 const addButton = document.querySelector('.profile__add-button');
 const closeAddPopup = document.querySelector('.popup__close-button_card-add');
 const profileName = document.querySelector('.profile__name');
@@ -11,43 +11,15 @@ const inputName = form.querySelector('.form__field_input_name');
 const inputJob = form.querySelector('.form__field_input_job');
 const templateCard = document.querySelector('#card-template').content.querySelector('.card');
 const cardWrap = document.querySelector('.cards__item');
-const formAdd = document.querySelector('[name="add-image"]')
 const сardInputPlace = document.querySelector('.form__field_input_place');
 const cardInputLink = document.querySelector('.form__field_input_link');
 const cardAddForm = document.querySelector('[name="add-image"]')
-const popupZoom = document.querySelector('.popup_large');
+const popupZoom = document.querySelector('.popup_type_zoom');
 const popupZoomImage = document.querySelector('.popup__image');
 const popupZoomCaption = document.querySelector('.popup__caption');
 const popupZoomClose = document.querySelector('.popup__close-button_large');
-const popupAll = document.querySelectorAll('.popup');
 
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 
 initialCards.forEach(item => {
@@ -78,21 +50,6 @@ function createCard(item) {
   return card
 }
 
-
-popupAll.forEach(popup => {
-  document.addEventListener('keydown', (evt) => {   //Функция закрытия попопа по кнопке Escape
-    if (evt.key === "Escape") {
-      popup.classList.remove('popup_opened');
-    }
-  })
-})
-
-
-popupAll.forEach(popup => {
-  popup.addEventListener('click', (evt) => {   // Функция закрытия попапа по клику
-    evt.target.classList.remove('popup_opened');
-  })
-})
 
 
 function likeButtonHandler(e) {
@@ -128,7 +85,7 @@ function openPopup(popup) {  // Открытие/закрытие попапа
 }
 
 
-function profilePopupEdit() {
+function editProfilePopup() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
 }
@@ -146,6 +103,6 @@ form.addEventListener('submit', formSubmitHandler);
 cardAddForm.addEventListener('submit', addCard);
 addButton.addEventListener('click', () => {openPopup(popupAdd)});
 closeAddPopup.addEventListener('click', () => {openPopup(popupAdd)});
-openButton.addEventListener('click', () => {openPopup(popupEdit), profilePopupEdit()});
+openButton.addEventListener('click', () => {openPopup(popupEdit), editProfilePopup()});
 closeButton.addEventListener('click', () => {openPopup(popupEdit)});
 popupZoomClose.addEventListener('click', () => {openPopup(popupZoom)});
