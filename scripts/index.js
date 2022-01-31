@@ -1,23 +1,23 @@
 const popupEdit = document.querySelector('.popup_type_profile-edit');
 const openButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelector('.popup__close-button_profile-edit');
+const closeButton = document.querySelector('.popup__close-button_type_profile-edit');
 const popupAdd = document.querySelector('.popup_type_card-add');
 const addButton = document.querySelector('.profile__add-button');
-const closeAddPopup = document.querySelector('.popup__close-button_card-add');
+const closeAddPopup = document.querySelector('.popup__close-button_type_card-add');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__caption');
-const form = document.querySelector('.form');
-const inputName = form.querySelector('.form__field_input_name');
-const inputJob = form.querySelector('.form__field_input_job');
+const formEdit = document.querySelector('.form_type_profile-edit');
+const inputName = formEdit.querySelector('.form__field_input_name');
+const inputJob = formEdit.querySelector('.form__field_input_job');
 const templateCard = document.querySelector('#card-template').content.querySelector('.card');
 const cardWrap = document.querySelector('.cards__item');
 const сardInputPlace = document.querySelector('.form__field_input_place');
 const cardInputLink = document.querySelector('.form__field_input_link');
-const cardAddForm = document.querySelector('[name="add-image"]')
+const cardAddForm = document.querySelector('.form_type_card-add');
 const popupZoom = document.querySelector('.popup_type_zoom');
 const popupZoomImage = document.querySelector('.popup__image');
 const popupZoomCaption = document.querySelector('.popup__caption');
-const popupZoomClose = document.querySelector('.popup__close-button_large');
+const popupZoomClose = document.querySelector('.popup__close-button_type_zoom');
 
 
 
@@ -99,7 +99,7 @@ function formSubmitHandler(evt) {
 }
 
 
-form.addEventListener('submit', formSubmitHandler);
+formEdit.addEventListener('submit', formSubmitHandler);
 cardAddForm.addEventListener('submit', addCard);
 addButton.addEventListener('click', () => {openPopup(popupAdd)});
 closeAddPopup.addEventListener('click', () => {openPopup(popupAdd)});
