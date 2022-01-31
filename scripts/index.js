@@ -13,7 +13,7 @@ const templateCard = document.querySelector('#card-template').content.querySelec
 const cardWrap = document.querySelector('.cards__item');
 const сardInputPlace = document.querySelector('.form__field_input_place');
 const cardInputLink = document.querySelector('.form__field_input_link');
-const cardAddForm = document.querySelector('.form_type_card-add');
+const formAdd = document.querySelector('.form_type_card-add');
 const popupZoom = document.querySelector('.popup_type_zoom');
 const popupZoomImage = document.querySelector('.popup__image');
 const popupZoomCaption = document.querySelector('.popup__caption');
@@ -74,7 +74,7 @@ function addCard(event) {   //Добавление карточки при вв�
     name: сardInputPlace.value,
     link: cardInputLink.value
   }
-  cardAddForm.reset()
+  formAdd.reset()
   renderCard(card, cardWrap);
   openPopup(popupAdd);
 }
@@ -100,7 +100,7 @@ function formSubmitHandler(evt) {
 
 
 formEdit.addEventListener('submit', formSubmitHandler);
-cardAddForm.addEventListener('submit', addCard);
+formAdd.addEventListener('submit', addCard);
 addButton.addEventListener('click', () => {openPopup(popupAdd)});
 closeAddPopup.addEventListener('click', () => {openPopup(popupAdd)});
 openButton.addEventListener('click', () => {openPopup(popupEdit), editProfilePopup()});
