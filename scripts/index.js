@@ -18,8 +18,23 @@ const popupZoom = document.querySelector('.popup_type_zoom');
 const popupZoomImage = document.querySelector('.popup__image');
 const popupZoomCaption = document.querySelector('.popup__caption');
 const popupZoomClose = document.querySelector('.popup__close-button_type_zoom');
+const popupAll = document.querySelectorAll('.popup');
 
 
+popupAll.forEach(popup => {
+  document.addEventListener('keydown', function escapeHandler(evt) {   //Функция закрытия попопа по кнопке Escape
+    if (evt.key === "Escape") {
+      popup.classList.remove('popup_opened');
+    }
+  })
+});
+
+
+  popupAll.forEach(popup => {
+    popup.addEventListener('click', function clickHandler(evt) {   // Функция закрытия попапа по клику
+      evt.target.classList.remove('popup_opened');
+    })
+  });
 
 
 initialCards.forEach(item => {
@@ -37,6 +52,7 @@ function createCard(item) {
   cardImage.src = item.link;
   cardImage.alt = item.name;
 
+
   function cardZoom() { // Функция для приближения карточки
     openPopup(popupZoom);
     popupZoomImage.src = item.link;
@@ -44,12 +60,12 @@ function createCard(item) {
     popupZoomImage.alt = item.name;
   }
 
+
   cardDelete.addEventListener('click', removeButtonHandler);
   cardImage.addEventListener('click', cardZoom);
   cardLike.addEventListener('click', likeButtonHandler);
   return card
 }
-
 
 
 function likeButtonHandler(e) {
@@ -67,6 +83,9 @@ function renderCard(item, wrap) {
   wrap.prepend(cards);
 }
 
+function formRest(form) {
+  form.reset();
+}
 
 function addCard(event) {   //Добавление карточки при вводе значений в форму
   event.preventDefault();
@@ -74,10 +93,11 @@ function addCard(event) {   //Добавление карточки при вв�
     name: сardInputPlace.value,
     link: cardInputLink.value
   }
-  formAdd.reset()
   renderCard(card, cardWrap);
   openPopup(popupAdd);
+  formRest(formAdd);
 }
+
 
 
 function openPopup(popup) {  // Открытие/закрытие попапа
@@ -88,6 +108,7 @@ function openPopup(popup) {  // Открытие/закрытие попапа
 function editProfilePopup() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
+
 }
 
 
@@ -99,10 +120,13 @@ function formSubmitHandler(evt) {
 }
 
 
+enableValidation(configValidation);
+
 formEdit.addEventListener('submit', formSubmitHandler);
 formAdd.addEventListener('submit', addCard);
-addButton.addEventListener('click', () => {openPopup(popupAdd)});
+addButton.addEventListener('click', () => {openPopup(popupAdd), enableValidation});
 closeAddPopup.addEventListener('click', () => {openPopup(popupAdd)});
 openButton.addEventListener('click', () => {openPopup(popupEdit), editProfilePopup()});
 closeButton.addEventListener('click', () => {openPopup(popupEdit)});
 popupZoomClose.addEventListener('click', () => {openPopup(popupZoom)});
+

@@ -16,11 +16,11 @@
       <div class="profile__info">
         <div class="profile__information">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button aria-label="edit" class="profile__edit-button" type="button"></button>
+          <button aria-label="edit" class="profile-button profile__edit-button" type="button"></button>
           </div>
           <p class="profile__caption">Исследователь океана</p>
       </div>
-      <button aria-label="add" type="button" class="profile__add-button"></button>
+      <button aria-label="add" type="button" class="profile-button profile__add-button"></button>
     </section>
     <section class="cards">
       <ul class="cards__item">
@@ -35,9 +35,12 @@
     <div class="popup__container">
       <button type="button" class="popup__close-button popup__close-button_type_profile-edit"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="form form_type_profile-edit" name="edit-profile">
-        <input class="form__field form__field_input_name" type="text" placeholder="Имя">
-        <input class="form__field form__field_input_job" type="text" placeholder="Профессия">
+      <form class="form form_type_profile-edit" name="edit-profile" novalidate>
+        <input class="form__field form__field_input_name" type="text" placeholder="Имя" id="name" minlength="2" maxlength="40" required>
+        <span class="form__error" id="name-error"></span>
+        <input class="form__field form__field_input_job" type="text" placeholder="Профессия" id="proffession" minlength="2" maxlength="200" required>
+        <span class="form__error" id="proffession-error"></span>
+
         <button type="submit" class="form__save-button">Сохранить</button>
       </form>
     </div>
@@ -45,12 +48,14 @@
 
   <div class="popup popup_type_card-add">
     <div class="popup__container">
-      <button type="button" class="popup__close-button popup__close-button_type_card-add"></button>
+      <button type="button" class="popup__close-button popup__close-button_type_card-add" name></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="form form_type_card-add" name="add-image">
-        <input class="form__field form__field_input_place" type="text" placeholder="Название">
-        <input class="form__field form__field_input_link" type="url" placeholder="Ссылка на картинку">
-        <button type="submit" class="form__save-button">Создать</button>
+      <form class="form form_type_card-add" name="add-image" novalidate>
+        <input class="form__field form__field_input_place" type="text" placeholder="Название" minlength="2" maxlength="30" id="place" required>
+        <span class="form__error" id="place-error"></span>
+        <input class="form__field form__field_input_link" type="url" placeholder="Ссылка на картинку" id="url" required>
+        <span class="form__error" id="url-error"></span>
+        <button type="submit" class="form__save-button ">Создать</button>
       </form>
     </div>
   </div>
@@ -73,6 +78,7 @@
       </div>
     </li>
   </template>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 
