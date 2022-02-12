@@ -37,21 +37,20 @@ function createCard(item) {
   cardTitle.textContent = item.name;
   cardImage.src = item.link;
   cardImage.alt = item.name;
-
-
-  function cardZoom() { // Функция для приближения карточки
-    popupZoomImage.src = item.link;
-    popupZoomCaption.textContent = item.name;
-    popupZoomImage.alt = item.name;
-    openPopup(popupZoom);
-  }
-
-
   cardDelete.addEventListener('click', removeButtonHandler);
-  cardImage.addEventListener('click', cardZoom);
+  cardImage.addEventListener('click',() => zoomCard(item));
   cardLike.addEventListener('click', likeButtonHandler);
   return card
-}
+};
+
+
+
+function zoomCard(item) {
+  popupZoomImage.src = item.link;
+  popupZoomCaption.textContent = item.name;
+  popupZoomImage.alt = item.name;
+  openPopup(popupZoom);
+};
 
 
 function likeButtonHandler(e) {
@@ -80,7 +79,7 @@ function addCard(event) {   //Добавление карточки при вв�
     link: cardInputLink.value
   }
   renderCard(card, cardWrap);
-  openPopup(popupAdd);
+  closePopup(popupAdd);
   formRest(formAdd);
 };
 
@@ -123,7 +122,6 @@ function formSubmitHandler(evt) {
 }
 
 
-enableValidation(configValidation);
 
 formEdit.addEventListener('submit', formSubmitHandler);
 formAdd.addEventListener('submit', addCard);
@@ -131,5 +129,4 @@ addButton.addEventListener('click', () => {openPopup(popupAdd), enableValidation
 closeAddPopup.addEventListener('click', () => {closePopup(popupAdd)});
 openButton.addEventListener('click', () => {openPopup(popupEdit), editProfilePopup()});
 closeButton.addEventListener('click', () => {closePopup(popupEdit)});
-popupZoomClose.addEventListener('click', () => {openPopup(popupZoom)});
-popupZoomClose.addEventListener('click', () => {closePopup});
+popupZoomClose.addEventListener('click', () => {closePopup(popupZoom)});
