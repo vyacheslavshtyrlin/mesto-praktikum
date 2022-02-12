@@ -21,20 +21,6 @@ const popupZoomClose = document.querySelector('.popup__close-button_type_zoom');
 const popupAll = document.querySelectorAll('.popup');
 
 
-popupAll.forEach(popup => {
-  document.addEventListener('keydown', function escapeHandler(evt) {   //Функция закрытия попопа по кнопке Escape
-    if (evt.key === "Escape") {
-      popup.classList.remove('popup_opened');
-    }
-  })
-});
-
-
-  popupAll.forEach(popup => {
-    popup.addEventListener('click', function clickHandler(evt) {   // Функция закрытия попапа по клику
-      evt.target.classList.remove('popup_opened');
-    })
-  });
 
 
 initialCards.forEach(item => {
@@ -54,10 +40,10 @@ function createCard(item) {
 
 
   function cardZoom() { // Функция для приближения карточки
-    openPopup(popupZoom);
     popupZoomImage.src = item.link;
     popupZoomCaption.textContent = item.name;
     popupZoomImage.alt = item.name;
+    openPopup(popupZoom);
   }
 
 
@@ -81,11 +67,11 @@ function removeButtonHandler(e) {
 function renderCard(item, wrap) {
   const cards = createCard(item);
   wrap.prepend(cards);
-}
+};
 
 function formRest(form) {
   form.reset();
-}
+};
 
 function addCard(event) {   //Добавление карточки при вводе значений в форму
   event.preventDefault();
@@ -96,14 +82,31 @@ function addCard(event) {   //Добавление карточки при вв�
   renderCard(card, cardWrap);
   openPopup(popupAdd);
   formRest(formAdd);
+};
+
+function exitPopup(evt){
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup');
+    closePopup(openedPopup);
+  }
+};
+
+function clickHandler(evt) {
+  evt.target.classList.remove('popup_opened');
+};
+
+function openPopup(popup) {  // Открытие попапа
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', exitPopup);
+  document.addEventListener('click', clickHandler);
 }
 
+function closePopup(popup) {  // закрытие попапа
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', exitPopup);
+  document.removeEventListener('click', clickHandler);
 
-
-function openPopup(popup) {  // Открытие/закрытие попапа
-  popup.classList.toggle('popup_opened');
 }
-
 
 function editProfilePopup() {
   inputName.value = profileName.textContent;
@@ -125,8 +128,8 @@ enableValidation(configValidation);
 formEdit.addEventListener('submit', formSubmitHandler);
 formAdd.addEventListener('submit', addCard);
 addButton.addEventListener('click', () => {openPopup(popupAdd), enableValidation});
-closeAddPopup.addEventListener('click', () => {openPopup(popupAdd)});
+closeAddPopup.addEventListener('click', () => {closePopup(popupAdd)});
 openButton.addEventListener('click', () => {openPopup(popupEdit), editProfilePopup()});
-closeButton.addEventListener('click', () => {openPopup(popupEdit)});
+closeButton.addEventListener('click', () => {closePopup(popupEdit)});
 popupZoomClose.addEventListener('click', () => {openPopup(popupZoom)});
-
+popupZoomClose.addEventListener('click', () => {closePopup});
