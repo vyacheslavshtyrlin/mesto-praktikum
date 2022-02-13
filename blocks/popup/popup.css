@@ -10,7 +10,7 @@
   transition: visibility 0.4s, opacity 0.4s linear;
   justify-content: center;
   align-items: center;
-  display: block;
+  display: flex;
 
 
 
