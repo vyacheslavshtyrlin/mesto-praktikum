@@ -68,7 +68,7 @@ function renderCard(item, wrap) {
   wrap.prepend(cards);
 };
 
-function formRest(form) {
+function resetForm(form) {
   form.reset();
 };
 
@@ -80,7 +80,7 @@ function addCard(event) {   //Добавление карточки при вв�
   }
   renderCard(card, cardWrap);
   closePopup(popupAdd);
-  formRest(formAdd);
+  resetForm(formAdd);
 };
 
 function exitPopup(evt){
@@ -90,20 +90,24 @@ function exitPopup(evt){
   }
 };
 
-function clickHandler(evt) {
-  evt.target.classList.remove('popup_opened');
+function handleClickByOverlay(evt) {
+  const openedPopup = document.querySelector('.popup_opened');
+  if (evt.target === openedPopup) {
+    closePopup(openedPopup);
+  }
+
 };
 
 function openPopup(popup) {  // Открытие попапа
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', exitPopup);
-  document.addEventListener('click', clickHandler);
+  document.addEventListener('click', handleClickByOverlay);
 }
 
 function closePopup(popup) {  // закрытие попапа
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', exitPopup);
-  document.removeEventListener('click', clickHandler);
+  document.removeEventListener('click', handleClickByOverlay);
 
 }
 
@@ -114,7 +118,7 @@ function editProfilePopup() {
 }
 
 
-function formSubmitHandler(evt) {
+function handlerFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
@@ -123,7 +127,7 @@ function formSubmitHandler(evt) {
 
 
 
-formEdit.addEventListener('submit', formSubmitHandler);
+formEdit.addEventListener('submit', handlerFormSubmit);
 formAdd.addEventListener('submit', addCard);
 addButton.addEventListener('click', () => {openPopup(popupAdd), enableValidation});
 closeAddPopup.addEventListener('click', () => {closePopup(popupAdd)});
