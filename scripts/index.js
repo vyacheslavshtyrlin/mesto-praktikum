@@ -21,18 +21,18 @@ const popupZoom = document.querySelector('.popup_type_zoom');
 const popupZoomClose = document.querySelector('.popup__close-button_type_zoom');
 const cardWrap = document.querySelector('.cards__item');
 
+initialCards.forEach(item => {
+  createCards(item, '.card-template')
+});
 
 
-function createCards(cardArray) {
-  cardArray.forEach(item => {
-    const card = new Card (item, '.card-template');
-    const cardElement = card.addCard();
-    cardWrap.append(cardElement)
-  });
-};
+function createCards(item, selector) {
+  const card = new Card(item, selector);
+  const cardElement = card.addCard();
+  cardWrap.prepend(cardElement)
+}
 
 
-createCards(initialCards);
 
 
 function resetForm(form) {
@@ -42,12 +42,10 @@ function resetForm(form) {
 
 function addCard(event) {   //Добавление карточки при вводе значений в форму
   event.preventDefault();
-  const card = new Card ({
+  createCards({
     name: сardInputPlace.value,
     link: cardInputLink.value
   }, '.card-template');
-  const cardElement = card.addCard();
-  cardWrap.prepend(cardElement);
   closePopup(popupAdd);
   resetForm(formAdd);
 };
@@ -71,14 +69,14 @@ function handleClickByOverlay(evt) {
 
 export function openPopup(popup) {  // Открытие попапа
   popup.classList.add('popup_opened');
-  popup.addEventListener('keydown', exitPopup);
+  document.addEventListener('keydown', exitPopup);
   popup.addEventListener('click', handleClickByOverlay);
 }
 
 
 function closePopup(popup) {  // закрытие попапа
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keydown', exitPopup);
+  document.removeEventListener('keydown', exitPopup);
   popup.removeEventListener('click', handleClickByOverlay);
 }
 
