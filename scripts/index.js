@@ -22,17 +22,19 @@ const popupZoomClose = document.querySelector('.popup__close-button_type_zoom');
 const cardWrap = document.querySelector('.cards__item');
 
 initialCards.forEach(item => {
-  createCards(item, '.card-template')
+  renderCard(item, cardWrap);
 });
 
+
+function renderCard(item, wrap) {
+  wrap.prepend(createCards(item, '.card-template'));
+}
 
 function createCards(item, selector) {
   const card = new Card(item, selector);
   const cardElement = card.addCard();
-  cardWrap.prepend(cardElement)
+  return cardElement
 }
-
-
 
 
 function resetForm(form) {
@@ -42,10 +44,10 @@ function resetForm(form) {
 
 function addCard(event) {   //Добавление карточки при вводе значений в форму
   event.preventDefault();
-  createCards({
+  renderCard({
     name: сardInputPlace.value,
     link: cardInputLink.value
-  }, '.card-template');
+  }, cardWrap);
   closePopup(popupAdd);
   resetForm(formAdd);
 };
