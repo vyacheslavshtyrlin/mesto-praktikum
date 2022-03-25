@@ -1,13 +1,11 @@
-import { openPopup } from "./index.js";
 
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor(data, templateSelector, handleCardClick) {
     this._imgLink = data.link;
     this._imgName = data.name;
     this._template = templateSelector
     this._popup = document.querySelector('.popup_type_zoom');
-    this._popupZoomImage = this._popup.querySelector('.popup__image');
-    this._popupCaption = this._popup.querySelector('.popup__caption');
+    this._handleCardClick = handleCardClick;
   };
 
 
@@ -36,7 +34,7 @@ export class Card {
       this._handleRemoveButton();
     });
     this._cardImage.addEventListener('click', () => {
-      this._zoomImage();
+      this._handleCardClick(this._imgName, this._imgLink);
 
     });
   }
@@ -49,14 +47,6 @@ export class Card {
     this._card.remove()
     this._card = null;
   };
-
-  _zoomImage() {
-    this._popupZoomImage.src = this._imgLink;
-    this._popupCaption.textContent = this._imgName;
-    this._popupZoomImage.alt = this._imgName;
-    openPopup(this._popup);
-  }
-
 }
 
 
