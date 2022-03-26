@@ -8,11 +8,8 @@ import './index.css'
 
 
 import {
-  popupEdit,
 
   openButton,
-
-  popupAdd,
 
   addButton,
 
@@ -27,8 +24,6 @@ import {
   cardInputLink,
 
   formAdd,
-
-  popupZoom,
 
   img,
 
@@ -48,19 +43,19 @@ import {
 
 
 const profileInfo = new UserInfo('.profile__name', '.profile__caption')
-const popupImage = new PopupWithImage(popupZoom, link, img);
-const popupFormEdit = new PopupWithForm(popupEdit, handlerFormSubmit)
-const popupAddForm = new PopupWithForm(popupAdd, addCard);
-const editFormValidation = new FormValidator(configValidation, formEdit);
-const addFormValidation = new FormValidator(configValidation, formAdd);
+const popupImage = new PopupWithImage('.popup_type_zoom', link, img);
+const popupFormEdit = new PopupWithForm('.popup_type_profile-edit', '.form_type_profile-edit', handlerFormSubmit)
+const popupAddForm = new PopupWithForm('.popup_type_card-add', '.form_type_card-add', addCard);
+const formEditValidation = new FormValidator(configValidation, formEdit);
+const formAddValidation = new FormValidator(configValidation, formAdd);
 
-editFormValidation.enableValidation();
-addFormValidation.enableValidation();
+formEditValidation.enableValidation();
+formAddValidation.enableValidation();
 
 
 function addCardForm() {
+  formAddValidation.setSubmitButtonState();
   popupAddForm.open();
-  addFormValidation.setSubmitButtonState();
 }
 
 
@@ -96,7 +91,7 @@ function addCard() {   //Добавление карточки при вводе
   const card = createCards({
     name: сardInputPlace.value,
     link: cardInputLink.value
-  }, '.card-template', handleCardClick);
+  }, '.card-template');
   cardSection.setItem(card);
 };
 
@@ -106,17 +101,16 @@ function editProfilePopup() {
   const userData = profileInfo.getUserInfo();
   inputName.value = userData.name;
   inputJob.value = userData.info;
-  editFormValidation.setSubmitButtonState()
+  formEditValidation.setSubmitButtonState()
 }
 
 
 function handlerFormSubmit() {
-  profileInfo.setUserInfo({name: inputName.value, info: inputJob.value})
+  profileInfo.setUserInfo(inputName, inputJob)
 }
+
 
 
 addButton.addEventListener('click', () => addCardForm());
 openButton.addEventListener('click', () => editProfilePopup());
 
-
-console.log('Hello, World!')

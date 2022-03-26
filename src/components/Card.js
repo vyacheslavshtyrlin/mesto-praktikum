@@ -4,7 +4,6 @@ export default class Card {
     this._imgLink = data.link;
     this._imgName = data.name;
     this._template = templateSelector
-    this._popup = document.querySelector('.popup_type_zoom');
     this._handleCardClick = handleCardClick;
   };
 
