@@ -1,17 +1,12 @@
 export const popupEdit = document.querySelector('.popup_type_profile-edit');
-export const openButton = document.querySelector('.profile__edit-button');
+export const buttonOpen = document.querySelector('.profile__edit-button');
 export const popupAdd = document.querySelector('.popup_type_card-add');
-export const addButton = document.querySelector('.profile__add-button');
+export const buttonAdd = document.querySelector('.profile__add-button');
 export const formEdit = document.querySelector('.form_type_profile-edit');
-export const inputName = formEdit.querySelector('.form__field_input_name');
-export const inputJob = formEdit.querySelector('.form__field_input_job');
-export const сardInputPlace = document.querySelector('.form__field_input_place');
-export const cardInputLink = document.querySelector('.form__field_input_link');
+export const nameInput = formEdit.querySelector('.form__field_input_name');
+export const jobInput = formEdit.querySelector('.form__field_input_job');
 export const formAdd = document.querySelector('.form_type_card-add');
 export const popupZoom = document.querySelector('.popup_type_zoom');
-export const img = document.querySelector('.popup__image');
-export const link = document.querySelector('.popup__caption');
-
 export const configValidation = {
   formSelector: '.form',
   inputSelector: '.form__field',

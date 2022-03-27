@@ -12,9 +12,9 @@ export default class UserInfo {
     return data;
   };
 
-  setUserInfo(name, info) {
-    this._name.textContent = name.value;
-    this._info.textContent = info.value;
+  setUserInfo(data) {
+    this._name.textContent = data.name;
+    this._info.textContent = data.job;
   }
 
 
