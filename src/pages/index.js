@@ -105,26 +105,3 @@ function editProfilePopup() {
 
 buttonAdd.addEventListener('click', () => addCardForm());
 buttonOpen.addEventListener('click', () => editProfilePopup());
-
-
-
-function createPost(newPost) {
-  fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST', // нужно указать метод запроса
-    // тело запроса
-    body: JSON.stringify({
-      title: newPost.title,
-      body: newPost.body
-    }),
-    // и заголовки
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    }
-  });
-  .then((data) =>{
-    data.json();
-  })
-  .then((data) => {
-    console.log(data);
-  })
-}
