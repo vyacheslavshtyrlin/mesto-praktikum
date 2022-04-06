@@ -3,7 +3,7 @@
   height: 120px;
   align-self: center;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
   margin-right: 30px;
 }
 

@@ -3,10 +3,13 @@ export const buttonOpen = document.querySelector('.profile__edit-button');
 export const popupAdd = document.querySelector('.popup_type_card-add');
 export const buttonAdd = document.querySelector('.profile__add-button');
 export const formEdit = document.querySelector('.form_type_profile-edit');
+export const formEditAvatar = document.querySelector('.form_type_avatar-add')
 export const nameInput = formEdit.querySelector('.form__field_input_name');
 export const jobInput = formEdit.querySelector('.form__field_input_job');
 export const formAdd = document.querySelector('.form_type_card-add');
 export const popupZoom = document.querySelector('.popup_type_zoom');
+export const buttonAvatarEdit = document.querySelector('.profile__avatar-button');
+
 export const configValidation = {
   formSelector: '.form',
   inputSelector: '.form__field',
