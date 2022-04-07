@@ -11,7 +11,7 @@ export default class PopupWithForm extends Popup {
     this._defaultMessage = 'Сохранить'
   }
 
-  confirmButtonState(isLoading) {
+  changeButtonText(isLoading) {
     if (isLoading) {
       this._submitButton.textContent = this._loadingMessage;
     }
@@ -41,6 +41,12 @@ export default class PopupWithForm extends Popup {
       this._submitForm();
     })
   };
+
+  setInputValues(data) {
+    this._inputs.forEach((input) => {
+      input.value = data[input.name];
+    });
+  }
 
   close() {
     super.close();

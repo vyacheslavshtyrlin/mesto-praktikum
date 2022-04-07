@@ -38,6 +38,13 @@ export default class FormValidator {
     }
   }
 
+  resetValidation() {
+    this.setSubmitButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement)
+    });
+  }
+
   _setEventListeners() {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {

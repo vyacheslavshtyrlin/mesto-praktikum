@@ -11,14 +11,9 @@ export default class API {
       if (res.ok) {
         return res.json()
       }
-    }).then((result) => {
-      console.log(result);
-      return result;
-    }).catch((err) => {
-      console.error(err);
-    })
-  };
-
+    return Promise.reject(`Ошибка ${res.status}`)
+  });
+}
 
   getData(patch) {
     const promise = fetch(`${this._url}/${patch}`, {
@@ -40,7 +35,7 @@ export default class API {
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.job,
+        about: data.info,
       })
     })
     return this._checkStatus(promise);

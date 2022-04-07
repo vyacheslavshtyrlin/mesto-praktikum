@@ -1,5 +1,5 @@
 import Card  from '../components/Card.js';
-import FormValidator  from '../components/CardValidate.js';
+import FormValidator  from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -13,10 +13,6 @@ import {
   buttonAdd,
 
   formEdit,
-
-  nameInput,
-
-  jobInput,
 
   formAdd,
 
@@ -47,10 +43,13 @@ let userId = null
 
 Promise.all([api.getData('users/me'), api.getData('cards')])
 .then((data) =>{
-  const [userData, CardData] = data;
+  const [userData, сardData] = data;
   userId = userData._id;
   profileInfo.setUserInfo(userData);
-  cardSection.renderItems(CardData)
+  cardSection.renderItems(сardData)
+})
+.catch((err) =>{
+  console.log(err)
 })
 
 
@@ -58,7 +57,6 @@ const cardSection = new Section({
   renderer: (data) => {
     const card = createCards(data)
     const cardElement = card.createCard()
-    card.likeCounter(data)
     cardSection.setItem(cardElement)
   }
 }, '.cards__item')
@@ -73,7 +71,8 @@ const popupConfirm = new PopupWithConfirm({
     .then(() =>{
       popupConfirm.close()
       card = null;
-    }).catch((err) =>{
+    })
+    .catch((err) =>{
       console.log(err)
     })
   },
@@ -91,13 +90,21 @@ const createCards = (data) => {
     putLike: (data) => {
       api.putLike(data)
       .then((data) =>{
-        card.likeCounter(data)
+        card.handleLikeIcon()
+        card.setLikeCounter(data)
+      })
+      .catch((err) =>{
+        console.log(err)
       })
     },
     deleteLike: (data) => {
       api.removeLike(data)
       .then((data) => {
-        card.likeCounter(data)
+        card.handleLikeIcon()
+        card.setLikeCounter(data)
+      })
+      .catch((err) =>{
+        console.log(err)
       })
     }
   })
@@ -109,7 +116,7 @@ const createCards = (data) => {
     popupSelector: '.popup_type_edit',
     formSelector: '.form_type_avatar-add',
     handlerFormSubmit: (data) => {
-      popupAvatarEdit.confirmButtonState(true)
+      popupAvatarEdit.changeButtonText(true)
       api.editAvatar(data)
       .then((data) =>{
         profileInfo.setAvatar(data);
@@ -117,19 +124,31 @@ const createCards = (data) => {
       .then(() => {
         popupAvatarEdit.close()
       })
+      .catch((err) =>{
+        console.log(err)
+      })
+      .finally(() =>{
+        popupAvatarEdit.changeButtonText(false);
+      })
     }
   })
 
 
 const popupFormEdit = new PopupWithForm({
   handlerFormSubmit: (data) => {
-    popupFormEdit.confirmButtonState(true)
+    popupFormEdit.changeButtonText(true)
     api.editProfie(data)
     .then((data) => {
       profileInfo.setUserInfo(data);
     })
     .then(() =>{
         popupFormEdit.close()
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
+      .finally(() =>{
+        popupFormEdit.changeButtonText(false);
       })
   },
   popupSelector: '.popup_type_profile-edit',
@@ -139,7 +158,7 @@ const popupFormEdit = new PopupWithForm({
 
 const popupAddForm = new PopupWithForm({
   handlerFormSubmit: (data) => {
-    popupAddForm.confirmButtonState(true);
+    popupAddForm.changeButtonText(true);
     api.addCard(data).then((data) =>{
       const card = createCards(data);
       const cardElement = card.createCard()
@@ -147,7 +166,12 @@ const popupAddForm = new PopupWithForm({
     })
     .then(()=> {
       popupAddForm.close()
-
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
+    .finally(()=> {
+      popupAddForm.changeButtonText(false);
     })
   },
   popupSelector: '.popup_type_card-add',
@@ -163,8 +187,8 @@ popupAvatarEdit.setEventListeners();
 
 
 function addCardForm() {
+  formAddValidation.resetValidation();
   formAddValidation.setSubmitButtonState();
-  popupAddForm.confirmButtonState(false);
   popupAddForm.open();
 }
 
@@ -176,19 +200,17 @@ function handleCardClick(img, link){
 
 function editProfileAvatar() {
   popupAvatarEdit.open();
-  popupAvatarEdit.confirmButtonState(false);
   formEditAvatarValidation.setSubmitButtonState();
+  formEditAvatarValidation.resetValidation();
 
 }
 
 
 function editProfilePopup() {
   popupFormEdit.open();
-  popupFormEdit.confirmButtonState(false)
-  const userData = profileInfo.getUserInfo();
-  nameInput.value = userData.name;
-  jobInput.value = userData.info;
-  formEditValidation.setSubmitButtonState()
+  popupFormEdit.setInputValues(profileInfo.getUserInfo());
+  formEditValidation.setSubmitButtonState();
+  formEditValidation.resetValidation();
 }
 
 
